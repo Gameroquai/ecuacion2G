@@ -117,6 +117,7 @@ public class Ecuacion2G extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(200, 150));
         setName("ventana"); // NOI18N
+        setResizable(false);
 
         panelDer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
