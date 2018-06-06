@@ -7,6 +7,8 @@ package ecuacionsegg;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +29,57 @@ public class Ecuacion2G extends javax.swing.JFrame {
                 textA.setText("");
                 textB.setText("");
                 textC.setText("");
+                labelSol1.setText("");
+                labelSol2.setText("");
+            }
+            
+        });
+        
+        botonCerrar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                
+                String [] botones = {"Sí", "No"};
+                int respuesta = JOptionPane.showOptionDialog(null, "Desea Salir?", "Ventana de salida", 
+                        JOptionPane.WARNING_MESSAGE, 0, null, botones, botones[1]);
+                if (respuesta == 0){
+                    System.exit(0);
+                }
+            }
+            
+        });
+        
+        botonCalcular.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
+                
+                double sol1, sol2;
+                int a, b, c;
+                
+                DecimalFormat formatonum = new DecimalFormat("#.####");
+                
+                
+                a = Integer.parseInt(textA.getText());
+                b = Integer.parseInt(textB.getText());
+                c = Integer.parseInt(textC.getText());
+                
+                if ((Math.pow(b, 2) - 4*a*c) < 0){
+                    labelSol1.setText("Sol Imaginaria");
+                    labelSol2.setText("Sol Imaginaria");
+                }else if ((Math.pow(b, 2) - 4*a*c) == 0){
+                    sol1 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c)) / (2*a);
+                    formatonum.format(sol1);
+                    labelSol1.setText(Double.toString(sol1));
+                    labelSol2.setText(Double.toString(sol1));
+                }else{
+                    sol1 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c)) / (2*a);
+                    sol2 = (-b - Math.sqrt(Math.pow(b, 2) - 4*a*c)) / (2*a);
+                    
+                    labelSol1.setText(formatonum.format(sol1));
+                    labelSol2.setText(formatonum.format(sol2));
+                }
             }
             
         });
@@ -62,6 +115,8 @@ public class Ecuacion2G extends javax.swing.JFrame {
         botonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(200, 150));
+        setName("ventana"); // NOI18N
 
         panelDer.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
